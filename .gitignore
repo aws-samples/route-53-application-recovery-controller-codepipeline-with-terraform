@@ -1,0 +1,10 @@
+**/.terraform
+**/.terraform*
+**/terraform.tfsta*
+out.json
+**/hc.out
+**/tf_output*.json
+**/*.log
+**/node*.zip
+**/logs/
+**/*loop*
