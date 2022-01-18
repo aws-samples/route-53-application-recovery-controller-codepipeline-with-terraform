@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository supports a [blog post on Route 53 Application Recovery Controller, AWS CI/CD tools, and Terraform](https://aws-blogs-prod.amazon.com/networking-and-content-delivery/running-recovery-oriented-applications-with-amazon-route-53-application-recovery-controller-aws-ci-cd-tools-and-terraform/). It deploys a sample web app, the **_SignUp application_**. This app allows customers to enter their contact information so that they can be notified when a new product from the New Startup company officially launches. The SignUp application is written in NodeJS.
+This repository supports a [blog post on Route 53 Application Recovery Controller, AWS CI/CD tools, and Terraform](https://aws.amazon.com/blogs/networking-and-content-delivery/running-recovery-oriented-applications-with-amazon-route-53-application-recovery-controller-aws-ci-cd-tools-and-terraform/). It deploys a sample web app, the **_SignUp application_**. This app allows customers to enter their contact information so that they can be notified when a new product from the New Startup company officially launches. The SignUp application is written in NodeJS.
 
 It runs in active/standby mode across two AWS Regions, with two Availability Zones per Region, and stores data in a DynamoDB global table that resides in the same two AWS Regions. Route 53 ARC’s routing controls will front each of the deployments at the application layer. To perform a Regional failover, you update routing control states to stop traffic to the active Region and start traffic to the standby Region.
 
