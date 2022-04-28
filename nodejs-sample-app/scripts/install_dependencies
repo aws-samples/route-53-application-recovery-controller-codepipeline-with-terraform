@@ -12,9 +12,9 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 source .bash_profile 
 
 # Use nvm to install the latest version of Node.js
-nvm install node
+nvm install 16
 
-nvm use node
+nvm use 16
 
 npm install npm@latest -g
 
