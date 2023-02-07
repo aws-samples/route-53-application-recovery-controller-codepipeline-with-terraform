@@ -2,7 +2,7 @@ resource "random_uuid" "s3_suffix" {
 }
 
 resource "aws_s3_bucket" "source_code_bucket_region_1" {
-  bucket = "gt-s3-arc-code-${random_uuid.s3_suffix.result}-${var.aws_region_1}"
+  bucket = "arc-code-${random_uuid.s3_suffix.result}-${var.aws_region_1}"
   acl    = "private"
   force_destroy = true
   
