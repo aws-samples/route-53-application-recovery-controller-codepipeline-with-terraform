@@ -17,7 +17,7 @@ terraform {
 }
 
 provider "aws" {
-  profile = "default"
+  profile = var.aws_profile
   region  = "${var.aws_region_2}"
 }
 
@@ -46,12 +46,12 @@ resource "aws_route53recoveryreadiness_recovery_group" "RecoveryGroup" {
 # The Application Recovery Controller resource set
 #
 
-# the application load balancers 
+# the application load balancers
 
 resource "aws_route53recoveryreadiness_resource_set" "ResourceSetALB" {
   resource_set_name = "${var.stack}-ResourceSet-ALB"
   resource_set_type = "AWS::ElasticLoadBalancingV2::LoadBalancer"
-  
+
   resources {
     resource_arn = "${var.LoadBalancer1}"
     readiness_scopes = [aws_route53recoveryreadiness_cell.Cell1.arn]
@@ -64,7 +64,7 @@ resource "aws_route53recoveryreadiness_resource_set" "ResourceSetALB" {
 
 }
 
-# the auto scaling groups 
+# the auto scaling groups
 
 resource "aws_route53recoveryreadiness_resource_set" "ResourceSetASG" {
   resource_set_name = "${var.stack}-ResourceSet-ASG"
@@ -79,7 +79,7 @@ resource "aws_route53recoveryreadiness_resource_set" "ResourceSetASG" {
     resource_arn = "${var.AutoScalingGroup2}"
     readiness_scopes = [aws_route53recoveryreadiness_cell.Cell2.arn]
   }
-  
+
 }
 
 # the DynamoDB table
@@ -103,13 +103,13 @@ resource "aws_route53recoveryreadiness_resource_set" "ResourceSetDynamoDB" {
 # The Application Recovery Controller readiness checks
 #
 
-# the application load balancers 
+# the application load balancers
 resource "aws_route53recoveryreadiness_readiness_check" "ReadinessCheckALB" {
   readiness_check_name = "${var.stack}-ReadinessCheck-ALB"
   resource_set_name    = aws_route53recoveryreadiness_resource_set.ResourceSetALB.resource_set_name
 }
 
-# the auto scaling groups 
+# the auto scaling groups
 resource "aws_route53recoveryreadiness_readiness_check" "ReadinessCheckASG" {
   readiness_check_name = "${var.stack}-ReadinessCheck-ASG"
   resource_set_name    = aws_route53recoveryreadiness_resource_set.ResourceSetASG.resource_set_name
